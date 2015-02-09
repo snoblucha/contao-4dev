@@ -21,9 +21,13 @@ class Css
 	 *
 	 * @param string $path path to your javascript.
 	 */
-	public static function add($path)
+	public static function add($path, $key = null)
 	{
-		$GLOBALS['TL_CSS'][] = $path;
+		if ($key) {
+			$GLOBALS['TL_CSS'][] = $path;
+		} else {
+			$GLOBALS['TL_CSS'][$path] = $path;
+		}
 	}
 
 

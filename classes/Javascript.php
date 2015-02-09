@@ -11,7 +11,7 @@ namespace Dev;
 
 /**
  * Javascript managment in Contao
- * 
+ *
  * @package Dev
  */
 class Javascript
@@ -20,11 +20,17 @@ class Javascript
 	 * Add javascript to Contao
 	 *
 	 * @param string $path path to your javascript.
+	 * @param string $key Key to add at desired location/name
 	 */
-	public static function add($path)
+	public static function add($path, $key = null)
 	{
-		$GLOBALS['TL_JAVASCRIPT'][] = $path;
+		if ($key) {
+			$GLOBALS['TL_JAVASCRIPT'][$key] = $path;
+		} else {
+			$GLOBALS['TL_JAVASCRIPT'][$path] = $path;
+
+		}
 	}
-	
-	
+
+
 }
