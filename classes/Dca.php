@@ -59,7 +59,7 @@ class Dca
 		if ($items instanceof Dca\Field) {
 			$items = $items->getField();
 		}
-		self::paletteReplace($table, $palette, $before, implode($separator, array($items, $before)));
+		self::paletteReplace($table, $palette, $before, implode($separator, array($before, $items)));
 	}
 
 	/**

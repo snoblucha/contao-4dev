@@ -13,9 +13,10 @@ Let's see the example
 
     $shortTitle = \Dev\Dca\Field::factory('short_title')
     	->exclude(false)
-    	->inputType('text')
-    	->evaluation(array('submitOnChange' => true))
-    	->sql("varchar(64) NOT NULL default ''");
+    	->inputType('text')    	
+    	->sql("varchar(64) NOT NULL default ''")
+    	->getEval() // returns Evaluation object for chaining
+    	    ->submitOnChange(true);
 
     \Dev\Dca::addField('tl_news', $shortTitle);
     \Dev\Dca::paletteAddAfter('tl_news','title',$shortTitle);

@@ -12,6 +12,16 @@ namespace Dev\Dca;
 class Evaluation
 {
 	/**
+	 * @var Field|null
+	 */
+	private $field = null;
+
+	function __construct($field = null)
+	{
+		$this->field = $field;
+	}
+
+	/**
 	 * true/false (boolean)
 	 * If true the helpwizard icon will appear next to the field label.
 	 *
@@ -75,6 +85,8 @@ class Evaluation
 		$this->fallback = $fallback;
 		return $this;
 	}
+	
+	
 
 	/**
 	 *    Regular expression (string)
@@ -586,12 +598,16 @@ class Evaluation
 	}
 
 	/**
+	 *
+	 * @param Field $field
 	 * @return Evaluation
 	 */
-	public static function factory()
+	public static function factory(Field $field = null)
 	{
-		return new Evaluation();
+		return new Evaluation($field);
 	}
+	
+	
 
 	public function toArray()
 	{
@@ -603,6 +619,35 @@ class Evaluation
 			}
 		}
 		return $res;
+	}
+
+	/**
+	 * @return Field|null
+	 */
+	public function getField()
+	{
+		return $this->field;
+	}
+	
+	
+
+	/**
+	 * @param Field|null $field
+	 */
+	public function setField($field)
+	{
+		$this->field = $field;
+	}
+
+
+	
+	/**
+	 * Returns the field passed in on construction
+	 * @return Field|null
+	 */
+	public function endEval(){
+		return $this->field;
+		
 	}
 
 	/**
@@ -773,6 +818,32 @@ class Evaluation
 	 * @var string
 	 */
 	private $csv;
+
+	/**
+	 * The Contao back end uses a simple two-column grid system to arrange input fields
+	 * their groups. You can apply the following CSS classes in the evaluation section
+	 * of the Data Container Array as tl_class (e.g. 'tl_class'=>'w50 wizard').
+	 *
+	 * - w50	 : Set the field width to 50% and float it (float:left).
+	 * - clr	 : Clear all floats (clear:both).
+	 * - wizard	 : Shorten the input field so there is enough room for the wizard button (e.g. date picker fields).
+	 * - long	 : Make the text input field span two columns.
+	 * - m12	 : Add a 12 pixels top margin to the element (used for single checkboxes).
+	 *
+	 *
+	 * @param string $tl_class
+	 * @return $this
+	 */
+	public function tlClass($tl_class = '')
+	{
+		$this->tl_class = $tl_class;
+		return $this;
+	}
+
+	/**
+	 * @var string
+	 */
+	private $tl_class;
 
 
 }

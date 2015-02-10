@@ -20,6 +20,27 @@ namespace Dev\Dca;
  */
 class Field
 {
+
+	const TYPE_RADIO = 'radio';
+	const TYPE_TEXT =  'text';// Text field
+	const TYPE_PASSWORD =  'password';// Password field
+	const TYPE_TEXTAREA = 'textarea';// Textarea
+	const TYPE_SELECT = 'select';// Drop-down menu
+	const TYPE_CHECKBOX = 'checkbox';// Checkbox
+	const TYPE_RADIO_TABLE = 'radioTable';// Table with images and radio buttons
+	const TYPE_IMAGE_SIZE = 'imageSize';// Two text fields with drop-down menu
+	const TYPE_INPUT_UNIT = 'inputUnit';// Text field with small unit drop-down menu
+	const TYPE_TRBL = 'trbl';// Four text fields with a small unit drop-down menu
+	const TYPE_CHMOD = 'chmod';// CHMOD table
+	const TYPE_PAGE_TREE = 'pageTree';// Page tree
+	const TYPE_FILE_TREE = 'fileTree';// File tree
+	const TYPE_TABLE_WIZARD = 'tableWizard';// Table wizard
+	const TYPE_TIME_PERIOD ='timePeriod';// Text field with drop-down menu
+	const TYPE_LIST_WIZARD = 'listWizard';// List wizard
+	const TYPE_OPTION_WIZARD = 'optionWizard';// Option wizard
+	const TYPE_MODULE_WIZARD = 'moduleWizard';// Module wizard
+	const TYPE_CHECKBOX_WIZARD = 'checkboxWizard';// Checkbox Wizard
+	
 	/**
 	 * Field name
 	 * @var string
@@ -38,7 +59,7 @@ class Field
 	 *
 	 * &$GLOBALS['TL_LANG'][...
 	 *
-	 * @var string|refernce
+	 * @var string|array
 	 */
 	public $label = null;
 
@@ -158,7 +179,7 @@ class Field
 	 *
 	 * Array that holds the options labels. Typically a reference to the global language array.
 	 *
-	 * @var reference
+	 * @var array
 	 */
 	public $reference = null;
 
@@ -168,7 +189,7 @@ class Field
 	 *
 	 * Array that holds the explanation. Typically a reference to the global language array.
 	 *
-	 * @var reference
+	 * @var array
 	 */
 	public $explanation = null;
 
@@ -186,9 +207,9 @@ class Field
 	 *
 	 * Use DcaEval class
 	 *
-	 * @var array|DcaEval
+	 * @var array|Evaluation
 	 */
-	public $eval = null;
+	public $eval = array();
 
 	/**
 	 * Callback function
@@ -213,7 +234,7 @@ class Field
 	 *
 	 * Describes relation to parent table (DcaRelation).
 	 *
-	 * @var array|DcaRelation
+	 * @var array
 	 */
 	public $relation = null;
 
@@ -255,7 +276,10 @@ class Field
 
 	}
 
-
+	/**
+	 * Get the array representation
+	 * @return array
+	 */
 	public function toArray()
 	{
 		$vars = get_object_vars($this);
@@ -263,7 +287,8 @@ class Field
 		foreach ($vars as $var => $value) {
 
 			if (!is_null($value)) {
-				if (is_object($value)) { // objects must have toArray method
+				if (is_object($value) && method_exists($value, 'toArray')) { 
+					// if have toArray method, then call it
 					$value = $value->toArray();
 				}
 				$res[$var] = $value;
@@ -305,7 +330,7 @@ class Field
 	 * @param string $field Field name/identificator
 	 * @param $params array Optional
 	 * @param bool $auto_label
-	 * @return DcaField
+	 * @return Field
 	 */
 	public static function factory($field, $params = array(), $auto_label = true)
 	{
@@ -313,7 +338,7 @@ class Field
 	}
 
 	/**
-	 * @param reference|string $label
+	 * @param array|string $label
 	 * @return $this
 	 */
 	public function label($label)
@@ -487,7 +512,7 @@ class Field
 	 *
 	 * Array that holds the options labels. Typically a reference to the global language array.
 	 *
-	 * @param reference $reference
+	 * @param &array $reference
 	 * @return $this
 	 */
 	public function reference($reference)
@@ -501,7 +526,7 @@ class Field
 	 *
 	 * Array that holds the explanation. Typically a reference to the global language array.
 	 *
-	 * @param reference $explanation
+	 * @param array|string $explanation
 	 * @return $this
 	 */
 	public function explanation($explanation)
@@ -525,7 +550,7 @@ class Field
 	}
 
 	/**
-	 * @param array|DcaEval $eval
+	 * @param array|Evaluation $eval
 	 * @return $this
 	 */
 	public function evaluation($eval)
@@ -567,7 +592,7 @@ class Field
 	 *
 	 * Describes relation to parent table (DcaRelation).
 	 *
-	 * @param array|DcaRelation $relation
+	 * @param array $relation
 	 * @return $this
 	 */
 	public function relation($relation)
@@ -588,6 +613,23 @@ class Field
 	{
 		$this->load_callback = $load_callback;
 		return $this;
+	}
+
+
+	/**
+	 * Get the evaulation object
+	 *
+	 * @return array|Evaluation
+	 */
+	public function beginEval(){
+		if($this->eval === null || is_array($this->eval)){
+			$this->eval = Evaluation::factory($this);
+		} else {
+			$this->eval->setField($this);
+		}
+		
+		return $this->eval;
+		
 	}
 
 	/**

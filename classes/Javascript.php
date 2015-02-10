@@ -20,10 +20,15 @@ class Javascript
 	 * Add javascript to Contao
 	 *
 	 * @param string $path path to your javascript.
+	 * @param bool $static File will combined into one contao's JS file. True by default.
 	 * @param string $key Key to add at desired location/name
 	 */
-	public static function add($path, $key = null)
+	public static function add($path, $static = true, $key = null)
 	{
+		if (version_compare(VERSION, '3', '>=') && $static) {
+			$path .= '|static';
+		}
+
 		if ($key) {
 			$GLOBALS['TL_JAVASCRIPT'][$key] = $path;
 		} else {
