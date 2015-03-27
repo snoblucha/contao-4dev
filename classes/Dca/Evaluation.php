@@ -93,20 +93,20 @@ class Evaluation
 	 *
 	 *   alias | expects a valid alias
 	 *  ---------------------------------
-	 *   alnum  | allows alphanumeric characters only (including full stop [.] minus ­, underscore [_] and space [ ])
-	 *   alpha  | allows alphabetic characters only (including full stop [.] minus ­ and space [ ])
-	 *   date   | expects a valid date
-	 *   datim  | expects a valid date and time
-	 *   digit  | allows numeric characters only (including full stop [.] and minus ­)
-	 *   email  | expects a valid e-mail address
-	 *   emails | expects a valid list of valid e-mail addresses
-	 *   extnd  | disallows #&()/<=>
-	 *   folderalias  | expects a valid folder URL alias
-	 *   friendly |  expects a valid "friendly name format" e-mail address
-	 *   phone  | expects a valid phone number (numeric characters, space [ ], plus [+], minus , parentheses [()] and slash [/])
-	 *   prcnt  | allows numbers between 0 and 100
-	 *   url    | expects a valid URL
-	 *   time   | expects a valid time
+	 *   - alnum  | allows alphanumeric characters only (including full stop [.] minus ­, underscore [_] and space [ ])
+	 *   - alpha  | allows alphabetic characters only (including full stop [.] minus ­ and space [ ])
+	 *   - date   | expects a valid date
+	 *   - datim  | expects a valid date and time
+	 *   - digit  | allows numeric characters only (including full stop [.] and minus ­)
+	 *   - email  | expects a valid e-mail address
+	 *   - emails | expects a valid list of valid e-mail addresses
+	 *   - extnd  | disallows #&()/<=>
+	 *   - folderalias  | expects a valid folder URL alias
+	 *   - friendly |  expects a valid "friendly name format" e-mail address
+	 *   - phone  | expects a valid phone number (numeric characters, space [ ], plus [+], minus , parentheses [()] and slash [/])
+	 *   - prcnt  | allows numbers between 0 and 100
+	 *   - url    | expects a valid URL
+	 *   - time   | expects a valid time
 	 *
 	 * @param string $rgxp
 	 * @return $this

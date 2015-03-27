@@ -9,7 +9,7 @@
 namespace Dev\Dca\Table\Listing;
 
 
-class Sort {
+class Sorting {
 
 	/**
 	 * Records are not sorted
@@ -237,8 +237,8 @@ class Sort {
 	}
 
 	public function load(){
-		if(isset($GLOBALS['TL_DCA'][ $this->table_name ]['list']['sort'])){
-			$def = $GLOBALS['TL_DCA'][ $this->table_name ]['list']['sort'];
+		if(isset($GLOBALS['TL_DCA'][ $this->table_name ]['list']['sorting'])){
+			$def = $GLOBALS['TL_DCA'][ $this->table_name ]['list']['sorting'];
 			foreach ( $def as $k => $v ) {
 				$this->$k = $v;
 			}
@@ -247,7 +247,7 @@ class Sort {
 	}
 
 	public function save(){
-		$GLOBALS['TL_DCA'][ $this->table_name ]['list']['sort'] = $this->toArray();
+		$GLOBALS['TL_DCA'][ $this->table_name ]['list']['sorting'] = $this->toArray();
 	}
 
 

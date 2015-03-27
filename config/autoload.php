@@ -39,7 +39,9 @@ ClassLoader::addClasses(array
 	'Dev\Dca\Table' => 'system/modules/4dev/classes/Dca/Table.php',
 	'Dev\Dca\Table\Config' => 'system/modules/4dev/classes/Dca/Table/Config.php',
 	'Dev\Dca\Table\Listing' => 'system/modules/4dev/classes/Dca/Table/Listing.php',
-	'Dev\Dca\Table\Listing\Sort' => 'system/modules/4dev/classes/Dca/Table/Listing/Sort.php',
+	'Dev\Dca\Table\Listing\Sorting' => 'system/modules/4dev/classes/Dca/Table/Listing/Sorting.php',
+	'Dev\Dca\Table\Listing\Label' => 'system/modules/4dev/classes/Dca/Table/Listing/Label.php',
+	'Dev\Dca\Table\Listing\Operation' => 'system/modules/4dev/classes/Dca/Table/Listing/Operation.php',
 	'Dev\Dca\Evaluation' => 'system/modules/4dev/classes/Dca/Evaluation.php',
 
 ));
