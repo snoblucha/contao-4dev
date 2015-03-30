@@ -18,7 +18,7 @@ class Lang
 	public static function set($key, $value, $description = null)
 	{
 		$arr = &self::decodePath($key, true);
-		if(is_string($value) && is_null($description) ){
+		if(is_string($value) && !is_null($description) ){
 			$value = array($value, $description);
 		}
 		$arr = $value;
