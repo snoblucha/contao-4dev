@@ -27,6 +27,10 @@ class Table {
 
 	}
 
+	public static function factory($table_name){
+		return new Table($table_name);
+	}
+
 	private function load() {
 		if(!isset($GLOBALS['TL_DCA'][$this->table_name])){
 			$GLOBALS['TL_DCA'][$this->table_name] = array(
