@@ -7,6 +7,7 @@
  */
 
 namespace Dev\Dca;
+use Dev\Lang;
 
 /**
  * Class DcaField
@@ -344,6 +345,16 @@ class Field
 	public function label($label)
 	{
 		$this->label = $label;
+		return $this;
+	}
+
+	/**
+	 * @param string $key
+	 * @return $this
+	 */
+	public function labelLangKey($key)
+	{
+		$this->label = Lang::get($key);
 		return $this;
 	}
 
