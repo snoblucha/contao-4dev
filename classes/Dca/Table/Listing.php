@@ -28,7 +28,7 @@ class Listing {
 	 * @param string $table_name
 	 * @return Listing
 	 */
-	public function factory( $table_name ) {
+	public static function factory( $table_name ) {
 		return new Listing( $table_name );
 	}
 
