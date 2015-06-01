@@ -29,7 +29,7 @@ ClassLoader::addClasses(array
 	// Hybrids
 	'Dev\Cron' => 'system/modules/4dev/classes/Cron.php',
 	'Dev\Dca' => 'system/modules/4dev/classes/Dca.php',
-	'Dev\ContentElement' => 'system/modules/4dev/classes/ContentElement.php',
+	'Dev\CTE' => 'system/modules/4dev/classes/CTE.php',
 	'Dev\Lang' => 'system/modules/4dev/classes/Lang.php',
 	'Dev\Hook' => 'system/modules/4dev/classes/Hook.php',
 	'Dev\Config' => 'system/modules/4dev/classes/Config.php',

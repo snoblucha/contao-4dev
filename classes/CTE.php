@@ -6,8 +6,11 @@
 
 namespace Dev;
 
-
-class ContentElement {
+/**
+ * Class CTE ContentElement class for adding new content elements.
+ * @package Dev
+ */
+class CTE {
 	const TYPE_MEDIA = 'media';
 	const TYPE_TEXTS = 'texts';
 	const TYPE_LINKS = 'links';
