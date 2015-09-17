@@ -80,6 +80,7 @@ class Table {
 	 *
 	 * @param DcaField|Field $field
 	 *
+	 * @return $this
 	 */
 	public function addField( Field $field ) {
 
@@ -87,7 +88,7 @@ class Table {
 			$field->label = &$GLOBALS['TL_LANG'][$this->table_name][$field->getField()];
 		}
 		$GLOBALS['TL_DCA'][$this->table_name]['fields'][$field->getField()] = $field->toArray();
-
+		return $this;
 	}
 
 	public function getDefArray() {
